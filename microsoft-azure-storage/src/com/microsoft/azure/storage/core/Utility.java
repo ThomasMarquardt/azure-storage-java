@@ -131,6 +131,14 @@ public final class Utility {
      */
     private static final JsonFactory jsonFactory = new JsonFactory();
 
+    private static void sleep(long l) {
+        try {
+            Thread.sleep(l);
+        }
+        catch (InterruptedException e) {
+        }
+    }
+
     /**
      * Thread local for SAXParser.
      */
@@ -138,7 +146,9 @@ public final class Utility {
         SAXParserFactory factory;
         @Override public SAXParser initialValue() {
             factory = SAXParserFactory.newInstance();
+            sleep(100);
             factory.setNamespaceAware(true);
+            sleep(10);
             try {
                 return factory.newSAXParser();
             } catch (SAXException e) {
@@ -695,11 +705,8 @@ public final class Utility {
      * Returns a namespace aware <code>SAXParser</code>.
      * 
      * @return A <code>SAXParser</code> instance which is namespace aware
-     * 
-     * @throws ParserConfigurationException
-     * @throws SAXException
      */
-    public static SAXParser getSAXParser() throws ParserConfigurationException, SAXException {
+    public static SAXParser getSAXParser()  {
         SAXParser parser = saxParserThreadLocal.get();
         parser.reset(); //reset to original config
         return parser;
