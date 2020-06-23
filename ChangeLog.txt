@@ -1,3 +1,7 @@
+2020.06.23 Version 5.4.1
+ * Fixed a bug where we were using non-daemon threads when reading blobs.
+ * Fixed a bug in XML parsing logic which caused list results to appear empty.
+
 2017.07.13 Version 5.4.0
  * Support for 2017-04-17 REST version. Please see our REST API documentation and blogs for information about the related added features.
  * Added ErrorReceivingResponseEvent which fires when a network error occurs before the responseReceivedEvent fires. If the responseReceivedEvent fires sucessfully, this new event will not fire.
